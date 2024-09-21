@@ -1,8 +1,17 @@
 package main
 
-type Block struct {
-	Timestamp     int64  // Time when the block was created
-	Data          []byte // Actual valuable information
-	PrevBlockHash []byte // Stores the hash of the previous block
-	Hash          []byte // Hash of the block
+import "fmt"
+
+func main() {
+	bc := NewBlockchain()
+
+	bc.AddBlock("Send 1 BTC to Igor")
+	bc.AddBlock("Send 2 more BTC to Yuri")
+
+	for _, block := range bc.blocks {
+		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Hash: %x\n", block.Hash)
+		fmt.Println()
+	}
 }
